@@ -1,14 +1,12 @@
 const express = require('express');
+const path = require('path');
+
 const app = express();
 
-app.get('/', (req, res) => {
-    console.log('User Accessed Home Page');
-    res.status(200).send('Home Page');
-})
+app.use(express.static('./public'));
 
-app.get('/about', (req, res) => {
-    console.log('User Accessed About Page');
-    res.status(200).send('About Page');
+app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'index.html'));
 })
 
 app.all('*', (req,res) => {
