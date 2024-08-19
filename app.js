@@ -5,9 +5,9 @@ const app = express();
 
 app.use(express.static('./public'));
 
-app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'index.html'));
-})
+// app.get('/', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, 'index.html'));
+// })
 
 app.all('*', (req,res) => {
     console.log(`User Accessed Page That Doesn't Exist`);
