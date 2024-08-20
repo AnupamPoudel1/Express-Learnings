@@ -3,19 +3,22 @@ const products = [
         id: 1,
         productName: "Nike Air Jordans",
         productCategory: 'Shoes',
-        price: 25000
+        price: 25000,
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est magnam eligendi debitis distinctio, modi perferendis nisi? Ipsa harum ipsam id.'
     },
     {
         id: 2,
         productName: "Denim Blue Jeans",
         productCategory: 'Pants',
-        price: 25000
+        price: 20000,
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est magnam eligendi debitis distinctio, modi perferendis nisi? Ipsa harum ipsam id.'
     },
     {
         id: 3,
         productName: "Polo Red Shirt",
         productCategory: 'Shirt',
-        price: 25000
+        price: 23000,
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est magnam eligendi debitis distinctio, modi perferendis nisi? Ipsa harum ipsam id.'
     },
 ]
 
