@@ -1,24 +1,26 @@
 const express = require('express');
 const app = express();
+const logger = require('./middleware/logger');
 
-// Middleware Learnings
-// req => middleware => res
+// Invoking middleware
+// Now this middleware will apply to every route after where we invoke it 
+app.use(logger);
 
-// simple middleware example
-const logger = (req, res, next) => {
-    const method = req.method;
-    const url = req.url;
-    const time = new Date().getFullYear();
-    console.log(method, url, time);
-    next();
-}
+// If we do as follow
+// app.use('/api', logger);
+// Then this logger middleware will apply to every route that starts with /api 
+// But this middleware wont apply to routes like /home, /about.
 
-app.get('/', logger, (req, res) => {
+app.get('/', (req, res) => {
     res.status(200).send(`Home Page`);
 })
 
-app.get('/about', logger, (req, res) => {
+app.get('/about', (req, res) => {
     res.status(200).send(`About Page`);
+})
+
+app.get('/api/v1/products', (req, res) => {
+    res.status(200).send(`Products`);
 })
 
 app.listen(5000, () => {
