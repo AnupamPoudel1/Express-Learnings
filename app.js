@@ -1,10 +1,19 @@
 const express = require('express');
-const app = express();
+const morgan = require('morgan');
+
+// custom imports
 const logger = require('./middleware/logger');
+const authorize = require('./middleware/authorize');
+
+// main express app
+const app = express();
+
+app.use(morgan('tiny'));
+
 
 // Invoking middleware
 // Now this middleware will apply to every route after where we invoke it 
-app.use(logger);
+// app.use([logger, authorize]);
 
 // If we do as follow
 // app.use('/api', logger);
@@ -19,7 +28,8 @@ app.get('/about', (req, res) => {
     res.status(200).send(`About Page`);
 })
 
-app.get('/api/v1/products', (req, res) => {
+app.get('/api/v1/products', authorize, (req, res) => {
+    console.log(req.user);
     res.status(200).send(`Products`);
 })
 
