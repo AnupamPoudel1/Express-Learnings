@@ -18,11 +18,37 @@ app.get('/api/products', (req, res) => {
     res.json(newProducts);
 })
 
-app.get('/api/products/1', (req, res) => {
+app.get('/api/products/:productId', (req, res) => {
+    const { productId } = req.params;
+    const singleProduct = products.find((product) => product.id === Number(productId));
 
-    const singleproduct = products.find((product) => product.id === 1);
+    if (!singleProduct) {
+        res.status(404).send('Product Does Not Exist');
+    }
 
-    res.json(singleproduct);
+    res.json(singleProduct);
+})
+
+app.get('/api/v1/products/query', (req, res) => {
+    const { search, limit } = req.query;
+    let sortedProducts = [...products];
+
+    if (search) {
+        sortedProducts = sortedProducts.filter((product) => {
+            return product.productName.startsWith(search)
+        });
+    }
+    if (limit) {
+        sortedProducts = sortedProducts.slice(0, Number(limit));
+    }
+    if(sortedProducts.length < 1){
+        // res.status(200).send('No Products That Match Your Search');
+        return res.status(200).json({
+            success: true,
+            data: []
+        });
+    }
+    res.status(200).json(sortedProducts);
 })
 
 app.listen(5000, () => {

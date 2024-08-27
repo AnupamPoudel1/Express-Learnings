@@ -20,6 +20,13 @@ const products = [
         price: 23000,
         description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est magnam eligendi debitis distinctio, modi perferendis nisi? Ipsa harum ipsam id.'
     },
+    {
+        id: 4,
+        productName: "Polo Green Shirt",
+        productCategory: 'Shirt',
+        price: 22500,
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est magnam eligendi debitis distinctio, modi perferendis nisi? Ipsa harum ipsam id.'
+    },
 ]
 
 const people = [
